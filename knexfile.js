@@ -1,44 +1,46 @@
-// Update with your config settings.
-
 module.exports = {
-
   development: {
-    client: 'sqlite3',
-    connection: {
-      filename: './dev.sqlite3'
-    }
+    client: "pg",
+    connection: "postgres://localhost/tdd_with_pern"
   },
 
-  staging: {
-    client: 'postgresql',
-    connection: {
-      database: 'my_db',
-      user:     'username',
-      password: 'password'
-    },
-    pool: {
-      min: 2,
-      max: 10
-    },
+  test: {
+    client: "pg",
+    // connection: {
+    //   database: "my_db",
+    //   user: "username",
+    //   password: "password"
+    // },
+    connection: "postgres://localhost/tdd_with_pern_test",
+    // pool: {
+    //   min: 2,
+    //   max: 10
+    // },
     migrations: {
-      tableName: 'knex_migrations'
+      directory: __dirname + "/db/migrations"
+    },
+    seeds: {
+      directory: __dirname + "/db/seeds/development"
     }
   },
 
   production: {
-    client: 'postgresql',
-    connection: {
-      database: 'my_db',
-      user:     'username',
-      password: 'password'
-    },
-    pool: {
-      min: 2,
-      max: 10
-    },
+    client: "pg",
+    // connection: {
+    //   database: "my_db",
+    //   user: "username",
+    //   password: "password"
+    // },
+    connection: process.env.DATABASE_URL,
+    // pool: {
+    //   min: 2,
+    //   max: 10
+    // },
     migrations: {
-      tableName: 'knex_migrations'
+      directory: __dirname + "/db/migrations"
+    },
+    seeds: {
+      directory: __dirname + "/db/seeds/production"
     }
   }
-
 };
