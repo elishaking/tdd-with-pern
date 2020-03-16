@@ -1,9 +1,16 @@
 const path = require("path");
 
+const env = require("./env.config");
+
 module.exports = {
   development: {
     client: "pg",
-    connection: "postgres://localhost/tdd_with_pern",
+    // connection: "postgres://localhost/tdd_with_pern",
+    connection: {
+      database: "tdd_with_pern",
+      user: "postgres",
+      password: env.DB_PASSWORD
+    },
     migrations: {
       directory: path.join(__dirname, "/db/migrations")
     },
@@ -14,12 +21,12 @@ module.exports = {
 
   test: {
     client: "pg",
-    // connection: {
-    //   database: "my_db",
-    //   user: "username",
-    //   password: "password"
-    // },
-    connection: "postgres://localhost/tdd_with_pern_test",
+    // connection: "postgres://localhost/tdd_with_pern_test",
+    connection: {
+      database: "tdd_with_pern",
+      user: "postgres",
+      password: env.DB_PASSWORD
+    },
     // pool: {
     //   min: 2,
     //   max: 10
