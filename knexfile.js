@@ -1,3 +1,5 @@
+const path = require("path");
+
 module.exports = {
   development: {
     client: "pg",
@@ -17,10 +19,10 @@ module.exports = {
     //   max: 10
     // },
     migrations: {
-      directory: __dirname + "/db/migrations"
+      directory: path.join(__dirname, "/db/migrations")
     },
     seeds: {
-      directory: __dirname + "/db/seeds/development"
+      directory: path.join(__dirname, "/db/seeds/development")
     }
   },
 
@@ -37,10 +39,10 @@ module.exports = {
     //   max: 10
     // },
     migrations: {
-      directory: __dirname + "/db/migrations"
+      directory: path.join(__dirname, "/db/migrations")
     },
     seeds: {
-      directory: __dirname + "/db/seeds/production"
+      directory: path.join(__dirname, "/db/seeds/production")
     }
   }
 };
