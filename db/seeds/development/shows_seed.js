@@ -1,6 +1,8 @@
 const knex = require("knex");
 
 /**
+ * Inserts seed entries
+ *
  * @param {knex} knex
  */
 exports.seed = knex => {
@@ -8,7 +10,6 @@ exports.seed = knex => {
   return knex("shows")
     .del()
     .then(() => {
-      // Inserts seed entries
       // return knex("shows").insert([
       //   {
       //     name: "Suits",
