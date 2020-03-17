@@ -59,7 +59,6 @@ describe("API Routes", () => {
           expect(res.status).toEqual(200);
           //   res.should.be.json; // jshint ignore:line
           expect(typeof res.body === "object").toBe(true);
-          expect(res.body.length).toEqual(4);
 
           expect(res.body).toHaveProperty("name");
           expect(res.body.name).toEqual("Suits");
@@ -97,7 +96,6 @@ describe("API Routes", () => {
           expect(res.status).toEqual(200);
           //   res.should.be.json; // jshint ignore:line
           expect(typeof res.body === "object").toBe(true);
-          expect(res.body.length).toEqual(4);
 
           expect(res.body).toHaveProperty("name");
           expect(res.body.name).toEqual("Family Guy");
