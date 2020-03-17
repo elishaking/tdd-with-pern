@@ -151,4 +151,25 @@ describe("API Routes", () => {
         .finally(() => done());
     });
   });
+
+  it("should NOT update a show if the id field is part of the request", done => {
+    request(server)
+      .put("/api/v1/shows/1")
+      .send({
+        id: 20,
+        rating: 4,
+        explicit: true
+      })
+      .then(res => {
+        expect(res.status).toEqual(422);
+        console.log(res.body);
+        //   res.should.be.json; // jshint ignore:line
+        expect(typeof res.body === "object").toBe(true);
+
+        expect(res.body).toHaveProperty("error");
+        expect(res.body.error).toEqual("You cannot update the id field");
+        done();
+      })
+      .finally(() => done());
+  });
 });
