@@ -215,7 +215,7 @@ describe("API Routes", () => {
               expect(res.body[0].genre).toEqual("Fantasy");
 
               expect(res.body[0]).toHaveProperty("rating");
-              expect(res.body[0].rating).toEqual(3);
+              expect(res.body[0].rating).toEqual(5);
 
               expect(res.body[0]).toHaveProperty("explicit");
               expect(res.body[0].explicit).toBe(true);
