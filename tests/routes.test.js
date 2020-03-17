@@ -144,7 +144,7 @@ describe("API Routes", () => {
           expect(res.body.rating).toEqual(5);
 
           expect(res.body).toHaveProperty("explicit");
-          expect(res.body.explicit).toBe(false);
+          expect(res.body.explicit).toBe(true);
 
           done();
         })
