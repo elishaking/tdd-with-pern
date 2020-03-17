@@ -3,7 +3,23 @@ process.env.NODE_ENV = "test";
 const server = require("../app");
 const request = require("supertest");
 
+const knex = require("../db/knex");
+
 describe("API Routes", () => {
+  // Rollback the migrations before each test is ran, and then re-apply the migrations and re-seed the database
+  beforeEach(done => {
+    knex.migrate.rollback().then(() => {
+      knex.migrate.latest().then(() => {
+        return knex.seed.run().then(() => done());
+      });
+    });
+  });
+
+  // Rollback the migrations after each test is ran
+  afterEach(done => {
+    knex.migrate.rollback().then(() => done());
+  });
+
   describe("GET /api/v1/shows", () => {
     it("should return all shows", done => {
       request(server)
@@ -31,9 +47,7 @@ describe("API Routes", () => {
 
           done();
         })
-        .catch(() => {
-          done();
-        });
+        .catch(() => done());
     });
   });
 });
