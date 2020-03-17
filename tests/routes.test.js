@@ -117,4 +117,38 @@ describe("API Routes", () => {
         .finally(() => done());
     });
   });
+
+  describe("PUT /api/v1/shows/:id", () => {
+    it("should update a show", done => {
+      request(server)
+        .put("/api/v1/shows/1")
+        .send({
+          rating: 5,
+          explicit: true
+        })
+        .then(res => {
+          expect(res.status).toEqual(200);
+          //   res.should.be.json; // jshint ignore:line
+          expect(typeof res.body === "object").toBe(true);
+
+          expect(res.body).toHaveProperty("name");
+          expect(res.body.name).toEqual("Suits");
+
+          expect(res.body).toHaveProperty("channel");
+          expect(res.body.channel).toEqual("USA Network");
+
+          expect(res.body).toHaveProperty("genre");
+          expect(res.body.genre).toEqual("Drama");
+
+          expect(res.body).toHaveProperty("rating");
+          expect(res.body.rating).toEqual(5);
+
+          expect(res.body).toHaveProperty("explicit");
+          expect(res.body.explicit).toBe(false);
+
+          done();
+        })
+        .finally(() => done());
+    });
+  });
 });
