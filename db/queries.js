@@ -31,8 +31,20 @@ const add = show => {
   return Shows().insert(show, "id");
 };
 
+/**
+ * Update one show with the given `showID`
+ * @param {string} showID
+ * @param {any} updates
+ */
+const update = (showID, updates) => {
+  return Shows()
+    .where("id", parseInt(showID))
+    .update(updates);
+};
+
 module.exports = {
   getAll,
   getSingle,
-  add
+  add,
+  update
 };
