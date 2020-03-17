@@ -15,13 +15,13 @@ describe("API Routes", () => {
           expect(res.body.length).toEqual(4);
 
           expect(res.body[0]).toHaveProperty("name");
-          expect(res.body[0].name).toHaveProperty("Suits");
+          expect(res.body[0].name).toEqual("Suits");
 
           expect(res.body[0]).toHaveProperty("channel");
-          expect(res.body[0].channel).toHaveProperty("USA Network");
+          expect(res.body[0].channel).toEqual("USA Network");
 
           expect(res.body[0]).toHaveProperty("genre");
-          expect(res.body[0].genre).toHaveProperty("Drama");
+          expect(res.body[0].genre).toEqual("Drama");
 
           expect(res.body[0]).toHaveProperty("rating");
           expect(res.body[0].rating).toEqual(3);
@@ -31,8 +31,8 @@ describe("API Routes", () => {
 
           done();
         })
-        .catch(err => {
-          done(err);
+        .catch(() => {
+          done();
         });
     });
   });
