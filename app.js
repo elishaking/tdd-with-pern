@@ -33,11 +33,16 @@ app.use((req, res, next) => {
 // error handler
 app.use((err, req, res, next) => {
   // set locals, only providing error in development
-  res.locals.message = err.message;
-  res.locals.error = req.app.get("env") === "development" ? err : {};
+  const env = req.app.get("env");
 
-  // render the error page
-  res.status(err.status || 500).send("Error");
+  res.locals.message = err.message;
+  res.locals.error = env === "development" ? err : {};
+
+  // return error: no stack trace exposed to the user in production
+  res.status(err.status || 500).json({
+    message: err.message,
+    error: env === "development" ? err : {}
+  });
 });
 
 module.exports = app;
