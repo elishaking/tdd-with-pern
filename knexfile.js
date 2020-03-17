@@ -23,7 +23,7 @@ module.exports = {
     client: "pg",
     // connection: "postgres://localhost/tdd_with_pern_test",
     connection: {
-      database: "tdd_with_pern",
+      database: "tdd_with_pern_test",
       user: "postgres",
       password: env.DB_PASSWORD
     },
