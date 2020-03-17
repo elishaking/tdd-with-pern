@@ -81,4 +81,42 @@ describe("API Routes", () => {
         .catch(() => done());
     });
   });
+
+  describe("POST /api/v1/shows", () => {
+    it("should add a show", done => {
+      request(server)
+        .post("/api/v1/shows")
+        .send({
+          name: "Family Guy",
+          channel: "Fox",
+          genre: "Comedy",
+          rating: 4,
+          explicit: true
+        })
+        .then(res => {
+          expect(res.status).toEqual(200);
+          //   res.should.be.json; // jshint ignore:line
+          expect(typeof res.body === "object").toBe(true);
+          expect(res.body.length).toEqual(4);
+
+          expect(res.body).toHaveProperty("name");
+          expect(res.body.name).toEqual("Family Guy");
+
+          expect(res.body).toHaveProperty("channel");
+          expect(res.body.channel).toEqual("Fox");
+
+          expect(res.body).toHaveProperty("genre");
+          expect(res.body.genre).toEqual("Comedy");
+
+          expect(res.body).toHaveProperty("rating");
+          expect(res.body.rating).toEqual(4);
+
+          expect(res.body).toHaveProperty("explicit");
+          expect(res.body.explicit).toBe(true);
+
+          done();
+        })
+        .catch(() => done());
+    });
+  });
 });
