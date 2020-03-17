@@ -42,9 +42,20 @@ const update = (showID, updates) => {
     .update(updates);
 };
 
+/**
+ * Delete one show with the given `showID`
+ * @param {string} showID
+ */
+const deleteItem = showID => {
+  return Shows()
+    .where("id", parseInt(showID))
+    .del();
+};
+
 module.exports = {
   getAll,
   getSingle,
   add,
-  update
+  update,
+  deleteItem
 };
