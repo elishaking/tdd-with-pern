@@ -23,7 +23,16 @@ const getSingle = showID => {
     .first();
 };
 
+/**
+ * Add one show
+ * @param {any} show
+ */
+const add = show => {
+  return Shows().insert(show, "id");
+};
+
 module.exports = {
   getAll,
-  getSingle
+  getSingle,
+  add
 };

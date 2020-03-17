@@ -47,7 +47,7 @@ describe("API Routes", () => {
 
           done();
         })
-        .catch(() => done());
+        .finally(() => done());
     });
   });
 
@@ -78,7 +78,7 @@ describe("API Routes", () => {
 
           done();
         })
-        .catch(() => done());
+        .finally(() => done());
     });
   });
 
@@ -116,7 +116,7 @@ describe("API Routes", () => {
 
           done();
         })
-        .catch(() => done());
+        .finally(() => done());
     });
   });
 });
