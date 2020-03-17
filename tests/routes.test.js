@@ -50,4 +50,35 @@ describe("API Routes", () => {
         .catch(() => done());
     });
   });
+
+  describe("GET /api/v1/shows/:id", () => {
+    it("should return a single show", done => {
+      request(server)
+        .get("/api/v1/shows/1")
+        .then(res => {
+          expect(res.status).toEqual(200);
+          //   res.should.be.json; // jshint ignore:line
+          expect(typeof res.body === "object").toBe(true);
+          expect(res.body.length).toEqual(4);
+
+          expect(res.body).toHaveProperty("name");
+          expect(res.body.name).toEqual("Suits");
+
+          expect(res.body).toHaveProperty("channel");
+          expect(res.body.channel).toEqual("USA Network");
+
+          expect(res.body).toHaveProperty("genre");
+          expect(res.body.genre).toEqual("Drama");
+
+          expect(res.body).toHaveProperty("rating");
+          expect(res.body.rating).toEqual(3);
+
+          expect(res.body).toHaveProperty("explicit");
+          expect(res.body.explicit).toBe(false);
+
+          done();
+        })
+        .catch(() => done());
+    });
+  });
 });
